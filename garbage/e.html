@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Киноиндустрия и Знаменитости</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5dc;
+            color: #5d4037;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        .dark-theme {
+            background-color: #3e2723;
+            color: #d7ccc8;
+        }
+
+        header, nav {
+            background: #6d4c41;
+            color: white;
+        }
+
+        .dark-theme header, .dark-theme nav {
+            background: #3e2723;
+        }
+
+        nav {
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #d7ccc8;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #d7ccc8;
+        }
+
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .section.active {
+            opacity: 1;
+        }
+
+        h2 {
+            color: #6d4c41;
+            font-size: 28px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #5d4037;
+            padding-bottom: 10px;
+        }
+
+        .dark-theme h2 {
+            color: #d7ccc8;
+            border-bottom-color: #b0bec5;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        footer {
+            background-color: #6d4c41;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 30px;
+        }
+
+        .dark-theme footer {
+            background-color: #3e2723;
+        }
+
+        .btn {
+            background-color: #5d4037;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-theme .btn {
+            background-color: #4e342e;
+        }
+
+        .btn:hover {
+            background-color: #4e342e;
+        }
+
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 10px 0;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+            scroll-snap-align: start;
+            border-radius: 8px;
+        }
+
+        .accordion {
+            margin-top: 15px;
+        }
+
+        .accordion-item {
+            margin-bottom: 10px;
+        }
+
+        .accordion-header {
+            background-color: #5d4037;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-theme .accordion-header {
+            background-color: #4e342e;
+        }
+
+        .accordion-header:hover {
+            background-color: #4e342e;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            padding: 0 10px;
+            background-color: #f5f5dc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .dark-theme .accordion-content {
+            background-color: #3e2723;
+        }
+
+        .accordion-content.open {
+            max-height: 500px;
+            padding: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .dark-theme .modal {
+            background-color: #3e2723;
+            color: #d7ccc8;
+        }
+
+        .modal-header {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-close {
+            background-color: #5d4037;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-theme .modal-close {
+            background-color: #4e342e;
+        }
+
+        .modal-close:hover {
+            background-color: #4e342e;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.open {
+            display: block;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background-color: #5d4037;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-theme .theme-toggle {
+            background-color: #4e342e;
+        }
+
+        .theme-toggle:hover {
+            background-color: #4e342e;
+        }
+
+        .main-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #d7ccc8, #8d6e63);
+            color: white;
+        }
+
+        .main-page h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .main-page p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+
+        .main-page .btn-main {
+            background-color: #5d4037;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .main-page .btn-main:hover {
+            background-color: #4e342e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#section1">Главная</a>
+            <a href="#section2">Киноиндустрия</a>
+            <a href="#section3">Знаменитости</a>
+            <a href="#section4">Фильмы</a>
+            <a href="#section5">Заключение</a>
+        </nav>
+    </header>
+
+    <div class="theme-toggle" onclick="toggleTheme()">🌤️</div>
+
+    <div class="main-page">
+        <h1>Добро пожаловать в мир кино</h1>
+        <p>Откройте для себя увлекательный мир киноиндустрии и знаменитостей, их достижения и влияние на культуру.</p>
+        <button class="btn-main" onclick="showSection('section1')">Начать</button>
+    </div>
+
+    <div class="content">
+        <!-- Секция 1 -->
+        <div id="section1" class="section active">
+            <h2>Киноиндустрия</h2>
+            <p>Киноиндустрия — это одна из самых динамично развивающихся и влиятельных отраслей искусства и развлечений. С момента появления первых фильмов в конце XIX века, кино стало важной частью культуры и медиапейза. Сегодня индустрия охватывает широкий спектр жанров и форматов, от художественных фильмов и документалистики до анимации и сериалов. Кино имеет способность отражать социальные изменения, освещать важные события и вдохновлять зрителей по всему миру.</p>
+            <p>Фильмы создаются для различных платформ, включая кинотеатры, телевидение и интернет-платформы, такие как стриминговые сервисы. Эти платформы предоставляют зрителям разнообразные форматы и жанры контента. В последние годы наблюдается рост популярности стриминговых платформ, что в свою очередь изменяет ландшафт киноиндустрии и способ потребления контента.</p>
+
+            <div class="carousel">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Film_Reel.jpg/800px-Film_Reel.jpg" alt="Кино 1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Cinema_Projection_1.jpg/800px-Cinema_Projection_1.jpg" alt="Кино 2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Film_Industry_1927.jpg/800px-Film_Industry_1927.jpg" alt="Кино 3">
+            </div>
+
+            <button class="btn" onclick="showSection('section2')">Следующий раздел</button>
+        </div>
+
+        <!-- Секция 2 -->
+        <div id="section2" class="section">
+            <h2>Киноиндустрия сегодня</h2>
+            <p>Современная киноиндустрия характеризуется быстрыми изменениями технологий и подходов к созданию контента. Инновации в области спецэффектов, цифрового производства и постпродакшн преобразили способы создания фильмов и сериалов. Например, использование технологий захвата движения и CGI позволяет создавать невероятно реалистичные и визуально потрясающие сцены.</p>
+            <p>Стриминговые платформы, такие как Netflix, Amazon Prime Video и Disney+, сыграли значительную роль в изменении того, как зрители получают доступ к контенту. Эти платформы не только предоставляют широкий выбор фильмов и шоу, но и активно инвестируют в производство оригинального контента. Стриминг позволяет зрителям смотреть фильмы и сериалы по запросу, что делает его одним из самых популярных способов потребления медиа.</p>
+            <p>Кинофестивали, такие как Каннский, Венецианский и Берлинский, остаются важными мероприятиями для индустрии, предоставляя платформу для демонстрации новых фильмов и встречу с кинокритиками, продюсерами и зрителями. Эти фестивали часто становятся стартовой площадкой для успешных фильмов и талантов.</p>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Инновации в кино</div>
+                    <div class="accordion-content">
+                        <p>Современные технологии позволяют создавать потрясающие спецэффекты и визуальные эффекты, которые раньше были невозможны. Использование виртуальной реальности и CGI изменяет способы, которыми мы воспринимаем фильмы. Виртуальные продакшн-студии и 3D-анимация предоставляют новые возможности для создания уникальных визуальных эффектов.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Стриминговые платформы</div>
+                    <div class="accordion-content">
+                        <p>Стриминговые платформы изменили способ, которым мы потребляем кино и телевидение, предоставляя зрителям доступ к огромному количеству контента на любой вкус. Платформы, такие как Hulu и HBO Max, предлагают эксклюзивные шоу и фильмы, которые не доступны на других сервисах. Они также предоставляют пользователям возможность создавать списки желаемого контента и получать рекомендации на основе их предпочтений.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/VR_Simulations.jpg/800px-VR_Simulations.jpg" alt="Технологии 1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Streaming_Services.jpg/800px-Streaming_Services.jpg" alt="Стриминг 1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Cannes_Film_Festival.jpg/800px-Cannes_Film_Festival.jpg" alt="Кинофестивали 1">
+            </div>
+
+            <button class="btn" onclick="showSection('section3')">Следующий раздел</button>
+        </div>
+
+        <!-- Секция 3 -->
+        <div id="section3" class="section">
+            <h2>Знаменитости в кино</h2>
+            <p>Знаменитости играют важную роль в киноиндустрии, привлекая зрителей и создавая популярные тренды. Актеры, режиссеры, продюсеры и сценаристы влияют на содержание и стиль фильмов, которые мы любим смотреть. Их личные и профессиональные достижения часто становятся основой для обсуждений в медиа и культурной жизни.</p>
+            <p>Звезды кино часто становятся культурными иконами, определяя стили, модные тенденции и даже общественные мнения. Например, Мэрил Стрип, Леонардо ДиКаприо и Стивен Спилберг стали известными не только благодаря своим выдающимся ролям и фильмам, но и за их вклад в развитие киноискусства.</p>
+            <p>Знаменитости могут использовать свою платформу для продвижения социальных изменений, повышения осведомленности о различных вопросах и поддержки благотворительных организаций. Они часто принимают участие в общественных кампаниях и инициативах, направленных на улучшение мира.</p>
+
+            <div class="dynamic-content">
+                <p onclick="showModal()">Мэрил Стрип</p>
+                <p onclick="showModal()">Леонардо ДиКаприо</p>
+                <p onclick="showModal()">Стивен Спилберг</p>
+                <p onclick="showModal()">Кристофер Нолан</p>
+            </div>
+
+            <div class="carousel">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Meryl_Streep_2016.jpg" alt="Мэрил Стрип">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Leonardo_DiCaprio_Cannes_2016.jpg" alt="Леонардо ДиКаприо">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Steven_Spielberg_2015.jpg" alt="Стивен Спилберг">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Christopher_Nolan_by_Gage_Skidmore.jpg" alt="Кристофер Нолан">
+            </div>
+
+            <button class="btn" onclick="showSection('section4')">Следующий раздел</button>
+        </div>
+
+        <!-- Секция 4 -->
+        <div id="section4" class="section">
+            <h2>Известные фильмы</h2>
+            <p>Фильмы, которые остаются в истории, могут оказывать огромное влияние на культуру и общество. Классические фильмы, такие как "Крестный отец" и "Касабланка", стали символами своей эпохи и продолжают вдохновлять новые поколения кинематографистов. Также современные блокбастеры, такие как "Мстители" и "Аватар", демонстрируют как спецэффекты и сложные сценарные конструкции могут захватывать аудиторию по всему миру.</p>
+            <p>Каждый фильм имеет свою уникальную историю и значимость. Например, "Побег из Шоушенка" стал культовым фильмом благодаря своей глубокой истории и выдающимся актерским работам. Фильмы Тарантино, такие как "Криминальное чтиво" и "Убить Билла", известны своими запоминающимися диалогами и стилистическими решениями.</p>
+            <p>Киноискусство включает в себя разнообразие жанров, включая драмы, комедии, триллеры и документальные фильмы. Каждый жанр приносит что-то уникальное и может быть использован для исследования различных тем и историй.</p>
+
+            <div class="carousel">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/The_Godfather_Theatrical_Poster.jpg" alt="Крестный отец">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Casablanca_%28film%29_poster.jpg" alt="Касабланка">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/43/The_Avengers_poster.jpg" alt="Мстители">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Avatar_%282009_film%29_poster.jpg" alt="Аватар">
+            </div>
+
+            <button class="btn" onclick="showSection('section5')">Следующий раздел</button>
+        </div>
+
+        <!-- Секция 5 -->
+        <div id="section5" class="section">
+            <h2>Заключение</h2>
+            <p>Киноиндустрия продолжает развиваться и изменяться, привнося новые формы искусства и инновационные технологии. От классических фильмов до современных блокбастеров, кино остается важной частью нашей культурной жизни. Знаменитости играют ключевую роль в этой индустрии, влияя на то, что мы смотрим и как воспринимаем кино.</p>
+            <p>Будущее кино будет определяться новыми технологиями, изменяющими способ создания и распространения контента. Стриминг, виртуальная реальность и новые форматы будут продолжать изменять способы, которыми мы взаимодействуем с киноискусством. Индустрия будет продолжать развиваться, предоставляя зрителям новые и захватывающие возможности для наслаждения искусством.</p>
+
+            <div class="carousel">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Film_Production.jpg" alt="Киноиндустрия">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Film_Editing.jpg" alt="Монтаж фильма">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Film_Studio_Set.jpg" alt="Съемочная площадка">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Film_Director.jpg" alt="Режиссер">
+            </div>
+
+            <button class="btn">Закончить</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="modalOverlay" class="overlay"></div>
+    <div id="modal" class="modal">
+        <div class="modal-header">Информация о знаменитости</div>
+        <p>Здесь будет дополнительная информация о выбранной знаменитости.</p>
+        <button class="modal-close" onclick="closeModal()">Закрыть</button>
+    </div>
+
+    <script>
+        // Переключение темы
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const themeIcon = document.querySelector('.theme-toggle');
+            themeIcon.textContent = document.body.classList.contains('dark-theme') ? '☁️' : '🌥️';
+        }
+
+        // Показ секций
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Аккордеон
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
+        // Модальное окно
+        function showModal() {
+            document.getElementById('modalOverlay').classList.add('open');
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('open');
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

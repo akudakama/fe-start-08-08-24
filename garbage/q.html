@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milk Pancakes</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFEBEB;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #8B0000;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Image Styles */
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content Styles */
+        .content {
+            width: 80%;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .content h2 {
+            color: #8B0000;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content ul {
+            margin-left: 20px;
+            list-style-type: disc;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        /* Link Styles */
+        .content a {
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button Styles */
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #8B0000;
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button-container a:hover {
+            background-color: #b22222;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            background: #8B0000;
+            color: white;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #f0e68c;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Table Styles */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .info-table th, .info-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .info-table th {
+            background-color: #8B0000;
+            color: white;
+        }
+
+        /* Media Queries */
+        @media(max-width: 768px) {
+            .content {
+                width: 90%;
+            }
+
+            .image-container img {
+                max-width: 100%;
+            }
+
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Milk Pancakes</h1>
+        <nav>
+            <a href="#history">History</a>
+            <a href="#recipe">Recipe</a>
+            <a href="#tips">Tips</a>
+            <a href="#ingredients">Ingredients</a>
+            <a href="#process">Preparation</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Pancake Image -->
+        <div class="image-container">
+            <img src="https://rud.ua/uploads/under_recipe/retsept_mlyntsiv_na_molotsi.jpg" alt="Pancakes">
+        </div>
+
+        <!-- Pancake History -->
+        <div class="section" id="history">
+            <h2>The History of Pancakes</h2>
+            <p>Pancakes are one of the oldest dishes known to humanity. It is believed that the first pancakes appeared in Russia in the 9th century. This dish was associated with pagan traditions and symbolized the sun. Pancakes were served during Maslenitsa as a symbol of saying goodbye to winter and welcoming spring.</p>
+            <p>Over time, pancake recipes spread around the world, and now every country has its own variations. However, the classic Russian milk pancakes remain the most famous.</p>
+        </div>
+
+        <!-- Traditional Information -->
+        <div class="section" id="recipe">
+            <h2>Recipe and Traditions</h2>
+            <p>Every nation has its rich ancient traditions, which are present in clothing, everyday life, language, songs, and food. Ukrainian traditions in cooking various national dishes are especially interesting. For every major holiday, Ukrainians have a list of obligatory dishes. Can you imagine Christmas without kutya or Easter without paska?</p>
+            <p>Milk pancakes are considered traditional Ukrainian food. There are many pancake recipes, but the main ingredients always include milk, sugar, salt, eggs, and butter. The flour used can vary, and so can the fillings. This is where the creativity of the cook comes into play. Who wouldn't want to enjoy pancakes with honey, apples, soft cheese, condensed milk, mushrooms, or meat?</p>
+        </div>
+
+        <!-- Useful Tips -->
+        <div class="section" id="tips">
+            <h2>Useful Tips for Making Pancakes</h2>
+            <p>When making pancakes, cooks often face challenges: how to make them thin and sturdy, or fluffy and light. Here are a few secrets:</p>
+            <ul>
+                <li>Wheat flour is best for making pancakes, but if you prefer fluffier pancakes, you can use oat or buckwheat flour.</li>
+                <li>To avoid lumps, add flour in small portions, constantly stirring.</li>
+                <li>For extra tender pancakes, sift the flour 2–3 times.</li> 
+                <li>Water is the base for thin and sturdy pancakes, but those made with milk are much tastier. Mix milk and water for both sturdy and delicious pancakes.</li>
+                <li>If you use kefir to make pancakes, they will be fluffy. The same effect is achieved with yeast dough. It is advisable to have a separate frying pan for making pancakes.</li>
+            </ul>
+        </div>
+
+        <!-- Buttons for Additional Pages -->
+        <div class="button-container" id="ingredients">
+            <a href="../hw01/second.html" target="_blank">Ingredients</a>
+            <a href="../hw01/third.html" target="_blank">Preparation</a>
+        </div>
+
+        <!-- Additional Info Table -->
+        <div class="section" id="process">
+            <h2>Additional Information</h2>
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>Ingredient</th>
+                        <th>Role in the Recipe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Milk</td>
+                        <td>The main ingredient that gives pancakes their softness and tenderness</td>
+                    </tr>
+                    <tr>
+                        <td>Eggs</td>
+                        <td>Makes the batter elastic and helps the pancakes hold their shape</td>
+                    </tr>
+                    <tr>
+                        <td>Flour</td>
+                        <td>The base of the batter, determining its structure and density</td>
+                    </tr>
+                    <tr>
+                        <td>Salt and Sugar</td>
+                        <td>Add flavor and balance the sweetness and saltiness of the pancakes</td>
+                    </tr>
+                    <tr>
+                        <td>Butter</td>
+                        <td>Gives pancakes a golden crust and prevents them from sticking to the pan</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        These pancakes are delicious! Honestly! <br>
+        Information was taken from this website: <a href="https://rud.ua/ru/consumer/recipe/desertu/milk-pancakes-71/" target="_blank">Pancakes</a>
+    </footer>
+
+</body>
+</html>

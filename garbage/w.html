@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История Второй мировой войны</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        header {
+            background: linear-gradient(90deg, #388e3c, #66bb6a);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #c8e6c9;
+        }
+
+        .content {
+            padding: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        h2 {
+            color: #388e3c;
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #66bb6a;
+            padding-bottom: 10px;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        footer {
+            background-color: #388e3c;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+        }
+
+        .btn {
+            background-color: #66bb6a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #43a047;
+        }
+
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+            scroll-snap-align: start;
+            border-radius: 10px;
+        }
+
+        .accordion {
+            margin-top: 20px;
+        }
+
+        .accordion-item {
+            margin-bottom: 10px;
+        }
+
+        .accordion-header {
+            background-color: #66bb6a;
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: #43a047;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            padding: 0 15px;
+            background-color: #e8f5e9;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .accordion-content.open {
+            max-height: 500px;
+            padding: 15px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal.open {
+            display: block;
+        }
+
+        .modal-header {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background-color: #388e3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background-color: #66bb6a;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.open {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>История Второй мировой войны</h1>
+    </header>
+
+    <nav>
+        <a href="#" onclick="showSection('section1')">Начало войны</a>
+        <a href="#" onclick="showSection('section2')">Основные сражения</a>
+        <a href="#" onclick="showSection('section3')">Конец войны</a>
+        <a href="#" onclick="showSection('section4')">Последствия</a>
+    </nav>
+
+    <div class="content">
+        <!-- Секция 1 -->
+        <div id="section1" class="section active">
+            <h2>Начало Второй мировой войны</h2>
+            <p>1 сентября 1939 года Германия вторглась в Польшу, что стало началом Второй мировой войны. Этому предшествовал напряженный период межвоенных лет, когда страны Европы были охвачены политическими и экономическими кризисами. После Первой мировой войны Версальский договор, подписанный в 1919 году, создал нестабильную международную обстановку, которая привела к росту реваншистских настроений в Германии. В 1933 году к власти пришла нацистская партия во главе с Адольфом Гитлером, который начал активно восстанавливать военную мощь страны и проводить агрессивную внешнюю политику.</p>
+            <p>Мировое сообщество, несмотря на усилия Лиги Наций, не смогло предотвратить рост напряженности. Политика умиротворения, которую проводили Великобритания и Франция, позволила Гитлеру присоединить Австрию и Судетскую область Чехословакии без серьезного сопротивления. После подписания Мюнхенского соглашения в 1938 году Гитлер укрепил свои позиции и начал подготовку к вторжению в Польшу, заключив при этом пакт Молотова-Риббентропа с Советским Союзом, что обеспечило ему временный союз и позволило избежать войны на два фронта.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Причины войны</div>
+                    <div class="accordion-content">
+                        <p>Основными причинами войны стали территориальные претензии Германии и стремление к реваншу после поражения в Первой мировой войне. Гитлер намеревался расширить жизненное пространство для немцев на Востоке и восстановить величие Германии. Экономические трудности, вызванные Великой депрессией, также способствовали усилению национализма и милитаризма в Европе. Важную роль сыграла неспособность международного сообщества адекватно реагировать на нарушения Версальского договора и агрессию со стороны нацистской Германии.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Международная обстановка</div>
+                    <div class="accordion-content">
+                        <p>Мировое сообщество оказалось неспособным предотвратить агрессию Германии и Японии. Лига Наций, созданная для поддержания мира после Первой мировой войны, оказалась неэффективной. Япония, проводя политику экспансии в Азии, захватила Маньчжурию в 1931 году и продолжила свои агрессивные действия в Китае. В Европе нацистская Германия, Италия при Муссолини и Испания под руководством Франко способствовали дальнейшему росту напряженности. Великобритания и Франция, надеясь избежать новой войны, продолжали политику умиротворения, что в итоге лишь усилило позиции агрессоров.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Bundesarchiv_Bild_183-R99057%2C_Polen%2C_deutsche_Soldaten_in_Warschau.jpg/1280px-Bundesarchiv_Bild_183-R99057%2C_Polen%2C_deutsche_Soldaten_in_Warschau.jpg" alt="Немецкие солдаты в Варшаве">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Bundesarchiv_Bild_101I-090-3916-13A%2C_Russland-S%C3%BCd%2C_Panzer_und_Soldaten.jpg/800px-Bundesarchiv_Bild_101I-090-3916-13A%2C_Russland-S%C3%BCd%2C_Panzer_und_Soldaten.jpg" alt="Танковая колонна">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Do17_Zerst%C3%B6rer.jpg/1024px-Do17_Zerst%C3%B6rer.jpg" alt="Бомбардировщики Люфтваффе">
+            </div>
+
+            <button class="btn" onclick="showSection('section2')">Следующий раздел</button>
+        </div>
+
+        <!-- Секция 2 -->
+        <div id="section2" class="section">
+            <h2>Основные сражения</h2>
+            <p>Вторую мировую войну характеризуют масштабные сражения, которые стали переломными моментами в ходе конфликта. Битва за Британию, Сталинградская битва, Курская битва, высадка в Нормандии и битва за Берлин – это лишь некоторые из крупнейших сражений, повлиявших на исход войны. Каждое из этих сражений сопровождалось огромными жертвами и изменениями на политической карте мира.</p>
+            <p>Битва за Британию в 1940 году стала первой крупной военной кампанией, в которой Германия потерпела поражение. Британские ВВС успешно отбили массированные налеты люфтваффе, что стало ключевым моментом в войне. Сталинградская битва, длившаяся с 17 июля 1942 года по 2 февраля 1943 года, стала одной из самых кровопролитных и поворотных точек войны. Красная Армия одержала победу, полностью окружив и уничтожив 6-ю армию вермахта, что положило начало наступлению Советского Союза на всех фронтах.</p>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Сражение за Британию</div>
+                    <div class="accordion-content">
+                        <p>Сражение за Британию стало ключевым событием в ходе войны, когда авиация Германии попыталась подавить сопротивление Великобритании воздушными атаками. Однако, несмотря на превосходство Германии в численности самолетов, британская авиация сумела защитить страну и сорвать планы нацистов по вторжению. Это стало первым серьезным поражением Германии в войне и символом стойкости британского народа.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">Сталинградская битва</div>
+                    <div class="accordion-content">
+                        <p>Сталинградская битва стала одним из самых значимых сражений Второй мировой войны. В ходе ожесточенных боев за город на Волге обе стороны понесли колоссальные потери, однако Красная Армия сумела одержать решающую победу. Эта победа стала началом краха нацистской Германии на Восточном фронте и переломным моментом в войне. Последствия битвы были огромными как в военном, так и в моральном плане.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Bundesarchiv_Bild_146-1984-068-19%2C_Stalingrad%2C_deutsche_Truppen_in_H%C3%A4userkampf.jpg/1024px-Bundesarchiv_Bild_146-1984-068-19%2C_Stalingrad%2C_deutsche_Truppen_in_H%C3%A4userkampf.jpg" alt="Сталинградская битва">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bundesarchiv_Bild_183-J25445%2C_Flugzeuge_der_RAF.jpg/1024px-Bundesarchiv_Bild_183-J25445%2C_Flugzeuge_der_RAF.jpg" alt="Битва за Британию">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Bundesarchiv_Bild_101I-218-0503-34%2C_Frankreich%2C_Barkmanns_Panther.jpg/1024px-Bundesarchiv_Bild_101I-218-0503-34%2C_Frankreich%2C_Barkmanns_Panther.jpg" alt="Танковое сражение">
+            </div>
+
+            <button class="btn" onclick="showSection('section3')">Следующий раздел</button>
+        </div>
+
+        <!-- Секция 3 -->
+        <div id="section3" class="section">
+            <h2>Конец войны</h2>
+            <p>8 мая 1945 года война в Европе завершилась капитуляцией Германии, но боевые действия в Азии продолжались до сентября 1945 года. После смерти Гитлера в апреле 1945 года и падения Берлина, Германия была вынуждена подписать безоговорочную капитуляцию. В Азии, несмотря на поражение союзников Германии, боевые действия продолжались до того момента, пока США не сбросили атомные бомбы на японские города Хиросиму и Нагасаки. Это привело к капитуляции Японии и завершению войны 2 сентября 1945 года.</p>
+            <p>Окончание войны ознаменовало начало нового мирового порядка. Были проведены Нюрнбергские процессы над нацистскими преступниками, началось восстановление разрушенных стран, и был создан Организация Объединенных Наций (ООН) для предотвращения будущих глобальных конфликтов. В то же время началась холодная война между США и СССР, что привело к разделению мира на два лагеря и новым геополитическим вызовам.</p>
+
+            <div class="carousel">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/End_of_World_War_II_in_Europe.jpg/1024px-End_of_World_War_II_in_Europe.jpg" alt="Конец войны в Европе">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Explosion_of_the_Atom_bomb_over_Nagasaki.jpg/1024px-Explosion_of_the_Atom_bomb_over_Nagasaki.jpg" alt="Атомный взрыв над Нагасаки">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Nuremberg_trials%2C_1946.jpg/1024px-Nuremberg_trials%2C_1946.jpg" alt="Нюрнбергский процесс">
+            </div>
+
+            <button class="btn" onclick="showSection('section4')">Следующий раздел</button>
+        </div>
+
+        <!-- Секция 4 -->
+        <div id="section4" class="section">
+            <h2>Последствия Второй мировой войны</h2>
+            <p>После окончания Второй мировой войны мир столкнулся с масштабными изменениями. Миллионы людей погибли, страны были разрушены, а политическая карта мира изменилась навсегда. Европа была разделена на западный и восточный блоки, что привело к началу холодной войны. США и СССР стали мировыми супердержавами, и их противостояние определило международную политику на несколько десятилетий вперед. Была создана Организация Объединенных Наций (ООН) для поддержания мира и предотвращения новых глобальных конфликтов.</p>
+            <p>Восстановление разрушенных стран потребовало огромных усилий. В Западной Европе началась программа Маршалла, благодаря которой экономика региона быстро восстановилась. В Восточной Европе, находившейся под влиянием СССР, установились коммунистические режимы. В Азии колониальные империи начали распадаться, и многие страны обрели независимость. Мир вступил в новую эру, которая характеризовалась как достижениями, так и новыми конфликтами.</p>
+
+            <div class="carousel">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/US_Army_in_London%2C_England_%2828050433974%29.jpg/1024px-US_Army_in_London%2C_England_%2828050433974%29.jpg" alt="Восстановление Европы">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Map_of_Iron_Curtain.svg/1024px-Map_of_Iron_Curtain.svg.png" alt="Железный занавес">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Meeting_at_the_Yalta_Conference_in_1945.jpg/1024px-Meeting_at_the_Yalta_Conference_in_1945.jpg" alt="Конференция в Ялте">
+            </div>
+
+            <button class="btn" onclick="showModal()">Подробнее</button>
+        </div>
+    </div>
+
+    <div class="modal" id="myModal">
+        <div class="modal-header">Дополнительная информация</div>
+        <p>Последствия Второй мировой войны затронули не только политическую и экономическую сферы, но и культуру, науку и международные отношения. Возникли новые геополитические альянсы, был создан ядерный паритет, и началась космическая гонка между США и СССР. Это также привело к созданию нового международного порядка, в котором важную роль играют глобальные институты и международные договоры.</p>
+        <button class="modal-close" onclick="closeModal()">Закрыть</button>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeModal()"></div>
+
+    <footer>
+        <p>&copy; 2024 История Второй мировой войны</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            content.classList.toggle('open');
+        }
+
+        function showModal() {
+            document.getElementById('myModal').classList.add('open');
+            document.getElementById('overlay').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').classList.remove('open');
+            document.getElementById('overlay').classList.remove('open');
+        }
+    </script>
+</body>
+</html>
